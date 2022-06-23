@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      html,
+      body {
+        padding: 0;
+        margin: 0;
+        overflow: hidden;
+      }
+      @keyframes rotate-in {
+        0% {
+          transform: rotate(180deg);
+        }
+        100% {
+          transform: rotate(0);
+        }
+      }
+      .rotate {
+        background-color: red;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100vw;
+        height: 100vh;
+        transform-origin: bottom;
+        transform: rotate(180deg);
+        animation-duration: 1.2s;
+        animation-name: rotate-in;
+        animation-fill-mode: forwards;
+        animation-timing-function: cubic-bezier(0.25, 0.1, 0.12, 1.14);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="rotate"></div>
+  </body>
+</html>
