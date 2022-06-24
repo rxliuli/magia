@@ -1,10 +1,13 @@
-.chapter-open {
-  background-color: var(--theme-gray);
+.full {
   width: 100%;
   height: 100%;
   position: absolute;
   left: 0;
   top: 0;
+}
+.chapter-open {
+  background-color: var(--theme-gray);
+  .full();
 
   .bg {
     width: 100%;
@@ -77,6 +80,119 @@
     }
     .bg2 {
       animation: bg2-in 0.6s ease 1.8s forwards;
+    }
+  }
+  .lines {
+    .full();
+    .top,
+    .bottom {
+      position: absolute;
+      width: 2px;
+      height: calc(50% - 20vmin);
+      left: calc(50% - 1px);
+      overflow: hidden;
+    }
+    .top {
+      top: 0;
+    }
+    .bottom {
+      bottom: 0;
+    }
+    .top::after,
+    .bottom::after {
+      content: '';
+      display: block;
+      width: 100%;
+      height: 100%;
+      background-color: var(--theme-purple);
+    }
+    .top::after {
+      transform: translateY(-100%);
+      animation: top-slide-through 0.8s linear forwards;
+    }
+    .bottom::after {
+      transform: translateY(100%);
+      animation: bottom-slide-through 0.8s linear forwards;
+    }
+  }
+  .ball {
+    position: absolute;
+    width: 80vmin;
+    height: 80vmin;
+    left: calc((100% - 80vmin) / 2);
+    top: calc((100% - 80vmin) / 2);
+    border-radius: 50%;
+    background-color: var(--theme-purple);
+    transform: scale(0);
+
+    span {
+      position: absolute;
+      width: 60%;
+      height: 60%;
+      border-radius: 50%;
+      border: 4px solid var(--theme-purple);
+      transform: scale(0);
+      z-index: 1;
+
+      &:nth-child(1) {
+        left: -4vmin;
+        top: -4vmin;
+      }
+
+      &:nth-child(2) {
+        right: -4vmin;
+        bottom: -4vmin;
+      }
+    }
+
+    &::after {
+      content: '';
+      display: block;
+      .full();
+      border-radius: 50%;
+      background-color: var(--theme-gray);
+      transform: scale(0);
+    }
+
+    animation: scale0-1 0.48s ease 2s forwards;
+    &::after {
+      animation: scale0-1 0.48s ease 2.1s forwards;
+    }
+
+    span:nth-child(1) {
+      animation: scale0-1-fade-out 0.8s ease-in-out 2.1s forwards;
+    }
+    span:nth-child(2) {
+      animation: scale0-1-fade-out 0.8s ease-in-out 2.3s forwards;
+    }
+  }
+  .title {
+    .item-box {
+      position: absolute;
+      width: 20vmin;
+      height: 40vmin;
+      left: calc((100% - 20vmin) / 2);
+      top: calc((100% - 40vmin) / 2);
+      overflow: hidden;
+      .item {
+        width: 100%;
+        height: 50%;
+        .mo,
+        .fa,
+        .nv {
+          width: 100%;
+          height: 100%;
+        }
+        .mo {
+          background-image: url('../assets/chapter-open-title-mo.svg');
+        }
+        .fa {
+          background-image: url('../assets/chapter-open-title-fa.svg');
+        }
+        .nv {
+          background-image: url('../assets/chapter-open-title-nv.svg');
+        }
+      }
     }
   }
   .switch {
