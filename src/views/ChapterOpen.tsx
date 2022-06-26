@@ -1,4 +1,4 @@
-import './styles/chapter-open.less'
+import '../styles/chapter-open.less'
 
 export function ChapterOpen(props: { onNext: () => void }) {
   return (
