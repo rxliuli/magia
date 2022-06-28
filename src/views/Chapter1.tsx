@@ -1,11 +1,6 @@
 import { useReducer } from 'preact/hooks'
 import '../styles/chapter1.less'
-
-function randomArray(count: number): number[] {
-  return Array(count)
-    .fill(0)
-    .map((_, i) => i + 1)
-}
+import { randomArray } from '../utils/randomArray'
 
 export function Chapter1(props: { onNext: () => void }) {
   const [index, inc] = useReducer((s) => s + 1, 0) as [number, () => void]

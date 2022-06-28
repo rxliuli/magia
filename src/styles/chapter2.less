@@ -1,0 +1,198 @@
+@import url("./basic.less");
+
+.chapter2 {
+  .full();
+  background-color: var(--theme-purple);
+
+  .open-mask {
+    .full();
+
+    span {
+      display: block;
+      position: absolute;
+      width: 100%;
+      height: 50%;
+      background-color: #000000;
+
+    }
+
+    span:nth-child(1) {
+      top: 0;
+      transform: translateY(-100%);
+    }
+
+    span:nth-child(2) {
+      bottom: 0;
+      transform: translateY(100%);
+    }
+
+    span {
+      animation-duration: 1s;
+      animation-timing-function: cubic-bezier(0.43, 0.05, 0, 1.08);
+      animation-fill-mode: forwards;
+    }
+
+    span:nth-child(1) {
+      animation-name: top-slide-in;
+    }
+
+    span:nth-child(2) {
+      animation-name: bottom-slide-in;
+    }
+  }
+
+  .word-box {
+    position: absolute;
+    width: 100%;
+    height: 20vmin;
+    top: calc((100% - 20vmin) / 2);
+    left: 0;
+    opacity: 0;
+    animation: fade-in .4s ease 1s forwards;
+
+    .word,
+    .word::before,
+    .word::after {
+      .full();
+      background: url("../assets/chapter2__open_word.svg") no-repeat center;
+      background-size: 40%;
+
+      @media screen and (max-width: 750px) {
+        background-size: 60%;
+      }
+    }
+
+    .word {
+      z-index: 3;
+    }
+
+    @keyframes noise-anim {
+      .loop(@i, @n) when(@i <=@n) {
+        @keyframeSel: (@i / @n * 100%);
+
+        @{keyframeSel} {
+          @a: `Math.random()`;
+          @b: `Math.random()`;
+          clip: rect(calc(@a * 150px), 9999px, calc(@b * 140px), 0);
+        }
+
+        .loop(@i+1, @n);
+      }
+
+      .loop(1, 30);
+    }
+
+    .word::before {
+      content: "";
+      left: 2px;
+      z-index: 1;
+      filter: contrast(200%);
+      clip: rect(24px, 550px, 90px, 0);
+      filter: drop-shadow(2px 2px 4px #49fc00);
+      animation: noise-anim 3s infinite linear alternate;
+    }
+
+    .word::after {
+      content: "";
+      left: -2px;
+      z-index: 2;
+      filter: contrast(200%);
+      mix-blend-mode: darken;
+      clip: rect(85px, 550px, 140px, 0);
+      filter: drop-shadow(2px 2px 4px #b300fc);
+      animation: noise-anim 2.5s infinite linear alternate;
+    }
+
+    .mask {
+      .full();
+      z-index: 4;
+      overflow: hidden;
+    }
+
+    .mask::before,
+    .mask::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-color: #000;
+    }
+
+    .mask::before {
+      top: 0;
+      transform: translateY(-100%);
+      animation: top-slide-in 6.8s cubic-bezier(.43, .05, 0, 1.08) .8s forwards;
+    }
+
+    .mask::after {
+      bottom: 0;
+      transform: translateY(100%);
+      animation: bottom-slide-in 6.8s cubic-bezier(.43, .05, 0, 1.08) .8s forwards;
+    }
+  }
+
+  .word-shine {
+    .full();
+
+    span {
+      position: absolute;
+      width: 10vmin;
+      height: 2px;
+      background-color: #fff;
+      opacity: 0;
+      animation: fade-in 0.1s linear 1.4s alternate 2 forwards;
+    }
+
+    span:nth-child(1) {
+      left: 10vmin;
+      top: 20vmin;
+    }
+
+    span:nth-child(2) {
+      right: 10vmin;
+      bottom: 20vmin;
+    }
+  }
+
+  .switch {
+    .full();
+    transform: rotate(-45deg);
+
+    span {
+      position: absolute;
+      left: calc(50% - 150vmax / 2);
+      top: calc(50% - 150vmax / 2);
+      width: 150vmax;
+      height: 150vmax;
+      transform: translateX(-100%);
+    }
+
+    @colors: var(--theme-red), var(--theme-yellow), var(--theme-blue), var(--theme-pink), var(--theme-purple);
+
+    .loop(@i) when(@i <=length(@colors)) {
+      span:nth-child(@{i}) {
+        background-color: extract(@colors, @i);
+        animation: left-slide-in 4s cubic-bezier(1, 0.01, 0, 1) (1.2s + 0.1s * (@i - 1)) forwards;
+      }
+
+      span:nth-last-child(@{i}) {
+        background-color: extract(@colors, @i);
+        animation: left-slide-in 4s cubic-bezier(1, 0.01, 0, 1) (1.2s + 0.1s * (10 - @i)) forwards;
+      }
+
+      .loop(@i+1);
+    }
+
+    .loop(1);
+
+    span:nth-child(1) {
+      background-color: var(--theme-red);
+      animation: left-slide-in 4s cubic-bezier(1, 0.01, 0, 1) 1.2s forwards;
+    }
+
+    span:nth-child(2) {
+      background-color: var(--theme-yellow);
+      animation: left-slide-in 4s cubic-bezier(1, 0.01, 0, 1) 1.3s forwards;
+    }
+  }
+}
