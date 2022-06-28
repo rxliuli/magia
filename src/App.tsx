@@ -7,7 +7,7 @@ import { ChapterHome } from './views/ChapterHome'
 import { Music } from './views/Music'
 
 export function App() {
-  const [state, onNext] = useReducer<number, void>((i) => i + 1, 3)
+  const [state, onNext] = useReducer<number, void>((i) => i + 1, 0)
   return (
     <>
       {state === 0 && <ChapterOpen onNext={onNext} />}

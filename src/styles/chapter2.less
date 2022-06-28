@@ -155,6 +155,7 @@
   }
 
   .switch {
+    @delay: 1.2s;
     .full();
     transform: rotate(-45deg);
 
@@ -169,30 +170,114 @@
 
     @colors: var(--theme-red), var(--theme-yellow), var(--theme-blue), var(--theme-pink), var(--theme-purple);
 
-    .loop(@i) when(@i <=length(@colors)) {
+    .loopBackgroundColor(@i) when(@i <=length(@colors)) {
       span:nth-child(@{i}) {
         background-color: extract(@colors, @i);
-        animation: left-slide-in 4s cubic-bezier(1, 0.01, 0, 1) (1.2s + 0.1s * (@i - 1)) forwards;
       }
 
       span:nth-last-child(@{i}) {
         background-color: extract(@colors, @i);
-        animation: left-slide-in 4s cubic-bezier(1, 0.01, 0, 1) (1.2s + 0.1s * (10 - @i)) forwards;
       }
 
-      .loop(@i+1);
+      .loopBackgroundColor(@i+1);
     }
 
-    .loop(1);
+    .loopBackgroundColor(1);
 
-    span:nth-child(1) {
-      background-color: var(--theme-red);
-      animation: left-slide-in 4s cubic-bezier(1, 0.01, 0, 1) 1.2s forwards;
+    .loopAnimation(@i) when(@i <=10) {
+      span:nth-child(@{i}) {
+        animation: left-slide-in 4s cubic-bezier(1, 0.01, 0, 1) (@delay + 0.1s * (@i - 1)) forwards;
+      }
+
+      .loopAnimation(@i+1);
     }
 
-    span:nth-child(2) {
-      background-color: var(--theme-yellow);
-      animation: left-slide-in 4s cubic-bezier(1, 0.01, 0, 1) 1.3s forwards;
+    .loopAnimation(1);
+  }
+
+  .close {
+    @delay: 4.7s;
+
+    .stone-wave {
+      position: absolute;
+      width: 80vmin;
+      height: 80vmin;
+      left: calc(50% - 80vmin / 2);
+      top: calc(50% - 80vmin / 2);
+      border-radius: 50%;
+      background-color: #fff;
+      transform: scale(0);
+      animation: scale0-1 0.4s ease @delay forwards;
+
+      &::after {
+        .full();
+        content: '';
+        border-radius: 50%;
+        background-color: var(--theme-red);
+        transform: scale(0);
+        animation: scale0-1 0.4s ease (@delay + 0.1s) forwards;
+      }
+    }
+
+    @keyframes stone-in {
+      0% {
+        transform: translateY(0);
+        opacity: 0;
+      }
+
+      100% {
+        transform: translateY(-10vmin);
+        opacity: 1;
+      }
+    }
+
+    @keyframes stone-out {
+      0% {
+        transform: translateY(-10vmin);
+        opacity: 1;
+      }
+
+      100% {
+        transform: translateY(70vmin);
+        opacity: 1;
+      }
+    }
+
+
+    .stone {
+      position: absolute;
+      width: 10vmin;
+      height: 20vmin;
+      left: calc(50% - 10vmin / 2);
+      top: calc(50% - 10vmin);
+      background: url("../assets/stone.svg") center no-repeat;
+      background-size: 100%;
+      opacity: 0;
+      animation: stone-in 0.4s cubic-bezier(0.09, 0.57, 0.36, 1.05) @delay forwards, stone-out 0.4s cubic-bezier(1, 0.04, 1, 0.63) (@delay + 0.4s) forwards;
+    }
+
+    .mask1,
+    .mask2 {
+      position: absolute;
+      width: 50%;
+      height: 100%;
+      background-color: #fff;
+    }
+
+    .mask1 {
+      left: 0;
+      bottom: 0;
+      transform: rotate(-90deg);
+      transform-origin: right bottom;
+      animation: rotate-n90-0 0.4s ease (@delay + 0.8s) forwards;
+    }
+
+    .mask2 {
+      right: 0;
+      bottom: 0;
+      transform: rotate(90deg);
+      transform-origin: left bottom;
+      animation: rotate-90-0 0.4s ease (@delay + 0.8s) forwards;
     }
   }
 }

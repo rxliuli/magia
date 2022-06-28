@@ -1,0 +1,260 @@
+@import url('./basic.less');
+
+.chapter-home {
+  .full();
+  @line-size: 4px;
+  @border-size: 2px;
+  background: url('../assets/texture.png') repeat;
+
+  .frame(@padding) {
+    position: absolute;
+    width: calc(100% - @padding * 2);
+    height: calc(100% - @padding * 2);
+    left: @padding;
+    top: @padding;
+    overflow: hidden;
+
+    span {
+      position: absolute;
+    }
+
+    .line-1 {
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: @line-size;
+      transform: translateX(101%);
+      animation: right-slide-in 0.4s linear 0.4s forwards;
+    }
+
+    .line-2 {
+      top: 0;
+      right: 0;
+      height: 100%;
+      width: @line-size;
+      transform: translateY(101%);
+      animation: bottom-slide-in 0.4s linear 0.4s forwards;
+    }
+
+    .line-3 {
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: @line-size;
+      transform: translateX(-101%);
+      animation: left-slide-in 0.4s linear 0.4s forwards;
+    }
+
+    .line-4 {
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: @line-size;
+      transform: translateY(-101%);
+      animation: top-slide-in 0.4s linear 0.4s forwards;
+    }
+
+    .bg-yellow {
+      background-color: var(--theme-yellow);
+    }
+
+    .bg-red {
+      background-color: var(--theme-red);
+    }
+
+    .bg-blue {
+      background-color: var(--theme-blue);
+    }
+
+    .bg-pink {
+      background-color: var(--theme-pink);
+    }
+
+    .bg-purple {
+      background-color: var(--theme-purple);
+    }
+  }
+
+  .outer-frame {
+    .frame(2vmin);
+
+    .line-1 {
+      animation: right-slide-in 0.4s linear 0.4s forwards;
+    }
+
+    .line-2 {
+      animation: bottom-slide-in 0.4s linear 0.4s forwards;
+    }
+
+    .line-3 {
+      animation: left-slide-in 0.4s linear 0.4s forwards;
+    }
+
+    .line-4 {
+      animation: top-slide-in 0.4s linear 0.4s forwards;
+    }
+  }
+
+  .inner-frame {
+    .frame(4vmin);
+
+    .line-1 {
+      animation: right-slide-in 0.4s linear 0s forwards;
+    }
+
+    .line-2 {
+      animation: bottom-slide-in 0.4s linear 0.4s forwards;
+    }
+
+    .line-3 {
+      animation: left-slide-in 0.4s linear 0s forwards;
+    }
+
+    .line-4 {
+      animation: top-slide-in 0.4s linear 0.4s forwards;
+    }
+  }
+
+  .rings {
+    position: absolute;
+    width: 160vmin;
+    height: 160vmin;
+    left: calc(50% - 160vmin / 2);
+    top: calc(50% - 160vmin / 2);
+
+
+    @colors: var(--theme-purple),
+    var(--theme-yellow),
+    var(--theme-red),
+    var(--theme-blue),
+    var(--theme-pink),
+    var(--theme-purple);
+
+    .frames(@i) when(@i < length(@colors)) {
+      @name: ~"border-@{i}";
+
+      @keyframes @name {
+        0% {
+          border-color: extract(@colors, @i);
+        }
+
+        100% {
+          border-color: extract(@colors, @i + 1);
+        }
+      }
+
+      .frames(@i+1);
+    }
+
+    .frames(1);
+
+    .color-yellow {
+      border-color: var(--theme-yellow);
+      animation: border-1 1s ease forwards;
+    }
+
+    .color-red {
+      border-color: var(--theme-red);
+      animation: border-2 1s ease forwards;
+    }
+
+    .color-blue {
+      border-color: var(--theme-blue);
+      animation: border-3 1s ease forwards;
+    }
+
+    .color-pink {
+      border-color: var(--theme-pink);
+      animation: border-4 1s ease forwards;
+    }
+
+    .color-purple {
+      border-color: var(--theme-purple);
+      animation: border-5 1s ease forwards;
+    }
+
+    .decoration {
+      .full();
+      border-radius: 50%;
+      border-style: solid;
+      border-width: @border-size;
+    }
+
+    .color-yellow .avatar {
+      background-image: url("../assets/character-yellow.png");
+    }
+
+    .color-red .avatar {
+      background-image: url("../assets/character-red.png");
+    }
+
+    .color-blue .avatar {
+      background-image: url("../assets/character-blue.png");
+    }
+
+    .color-pink .avatar {
+      background-image: url("../assets/character-pink.png");
+    }
+
+    .color-purple .avatar {
+      background-image: url("../assets/character-purple.png");
+    }
+
+    @keyframes character-show {
+      0% {
+        opacity: 0;
+      }
+
+      100% {
+        opacity: 0.15;
+      }
+    }
+
+    @keyframes character-hide {
+      0% {
+        opacity: 0.15;
+      }
+
+      100% {
+        opacity: 0;
+      }
+    }
+
+    .main {
+      position: absolute;
+      width: 96%;
+      height: 96%;
+      left: 2%;
+      top: 2%;
+      border-radius: 50%;
+      border-style: dashed;
+      border-width: @border-size;
+
+      .logo {
+        position: absolute;
+        top: calc(50% - 20vmin / 2);
+        width: 100%;
+        height: 20vmin;
+        background: url("../assets/logo.svg") center no-repeat;
+        background-size: 50%;
+      }
+
+
+      .avatar {
+        position: absolute;
+        z-index: -1;
+        width: 70%;
+        height: 70%;
+        left: calc(50% - 70% / 2);
+        top: calc(50% - 70% / 2);
+        border-radius: 50%;
+        background-repeat: no-repeat;
+        background-position-x: center;
+        background-position-y: 10%;
+        background-size: 100%;
+        box-shadow: 0 0 50px 30px #ffffff inset;
+        animation: character-show 2s ease forwards, character-hide 2s ease 5s forwards;
+      }
+    }
+  }
+}
