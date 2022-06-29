@@ -1,5 +1,6 @@
 import { useReducer, useRef } from 'preact/hooks'
 import '../styles/music.less'
+import music from '../assets/Kalafina_Magia.ogg'
 
 export function Music() {
   const audioRef = useRef<HTMLAudioElement>(null)
@@ -14,11 +15,7 @@ export function Music() {
   }, 'pause') as ['play' | 'pause', () => void]
   return (
     <div class={`music ${state}`} onClick={next}>
-      <audio
-        class={'hide'}
-        ref={audioRef}
-        src={'https://cdn.jsdelivr.net/npm/cyris-music-cdn/Kalafina_Magia.mp3'}
-      ></audio>
+      <audio class={'hide'} ref={audioRef} src={music}></audio>
     </div>
   )
 }
