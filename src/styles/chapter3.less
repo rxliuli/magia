@@ -1,8 +1,7 @@
-@import url("./basic.less");
+@import url('./basic.less');
 
 .chapter3 {
   .full();
-
 
   .open {
     .full();
@@ -63,7 +62,7 @@
     animation: fade-in 0.1s ease @delay forwards;
 
     .character {
-      background-image: url("../assets/character-blue.png");
+      background-image: var(--bg-blue);
     }
 
     .mask1,
@@ -76,15 +75,16 @@
 
     .mask1 {
       top: 0;
-      animation: top-slide-out 0.6s ease @delay forwards, top-slide-in 0.5s ease (@delay + 0.8s) forwards;
+      animation: top-slide-out 0.6s ease @delay forwards,
+        top-slide-in 0.5s ease (@delay + 0.8s) forwards;
     }
 
     .mask2 {
       bottom: 0;
-      animation: bottom-slide-out 0.6s ease @delay forwards, bottom-slide-in 0.5s ease (@delay + 0.8s) forwards;
+      animation: bottom-slide-out 0.6s ease @delay forwards,
+        bottom-slide-in 0.5s ease (@delay + 0.8s) forwards;
     }
   }
-
 
   .open2 {
     .open();
@@ -123,7 +123,7 @@
     animation: fade-in 0.1s ease @delay forwards;
 
     .character {
-      background-image: url("../assets/character-red.png");
+      background-image: var(--bg-red);
     }
 
     .mask1,
@@ -136,12 +136,14 @@
 
     .mask1 {
       top: 0;
-      animation: top-slide-out .6s ease @delay forwards, top-slide-in .5s ease (@delay + .8s) forwards;
+      animation: top-slide-out 0.6s ease @delay forwards,
+        top-slide-in 0.5s ease (@delay + 0.8s) forwards;
     }
 
     .mask2 {
       bottom: 0;
-      animation: bottom-slide-out .6s ease @delay forwards, bottom-slide-in .5s ease (@delay + .8s) forwards;
+      animation: bottom-slide-out 0.6s ease @delay forwards,
+        bottom-slide-in 0.5s ease (@delay + 0.8s) forwards;
     }
   }
 
@@ -150,7 +152,7 @@
     .loop(@i) when(@i <=8) {
       span:nth-child(@{i}) {
         left: calc(100% / 8 * (@i - 1));
-        animation: @animation .4s ease (@delay + .1s * (@i - 1)) forwards;
+        animation: @animation 0.4s ease (@delay + 0.1s * (@i - 1)) forwards;
       }
 
       .loop(@i+1);
@@ -171,7 +173,7 @@
       transform: scaleY(0);
     }
 
-    .span-animation(@delay, scaleY0-1)
+    .span-animation(@delay, scaleY0-1);
   }
 
   .character-box3 {
@@ -182,7 +184,7 @@
     animation: fade-in 0.1s ease @delay forwards;
 
     .character {
-      background-image: url("../assets/character-yellow.png");
+      background-image: var(--bg-yellow);
     }
 
     .mask1,
@@ -196,12 +198,12 @@
 
     .mask1 {
       top: 0;
-      animation: left-slide-out .6s ease @delay forwards;
+      animation: left-slide-out 0.6s ease @delay forwards;
     }
 
     .mask2 {
       bottom: 0;
-      animation: right-slide-in .5s ease (@delay + .8s) forwards;
+      animation: right-slide-in 0.5s ease (@delay + 0.8s) forwards;
     }
   }
 
@@ -220,7 +222,7 @@
     .loop(@i) when(@i <=8) {
       span:nth-child(@{i}) {
         top: calc(100% / 8 * (@i - 1));
-        animation: scaleX0-1 .4s ease (@delay + .1s * (@i - 1)) forwards;
+        animation: scaleX0-1 0.4s ease (@delay + 0.1s * (@i - 1)) forwards;
       }
 
       .loop(@i+1);
@@ -237,7 +239,7 @@
     animation: fade-in 0.1s ease @delay forwards;
 
     .character {
-      background-image: url("../assets/character-pink.png");
+      background-image: var(--bg-pink);
     }
 
     .mask1,
@@ -250,13 +252,13 @@
 
     .mask1 {
       top: 0;
-      animation: bottom-slide-out .6s ease @delay forwards;
+      animation: bottom-slide-out 0.6s ease @delay forwards;
     }
 
     .mask2 {
       bottom: 0;
       transform: translateY(-100%);
-      animation: top-slide-in .5s ease (@delay + .8s) forwards;
+      animation: top-slide-in 0.5s ease (@delay + 0.8s) forwards;
     }
   }
 
@@ -289,12 +291,12 @@
 
         span:nth-child(@{n}) {
           left: calc(100% / 8 * @i);
-          animation: @animation .4s ease (@delay + .1s * @i) forwards;
+          animation: @animation 0.4s ease (@delay + 0.1s * @i) forwards;
         }
 
         span:nth-last-child(@{n}) {
           right: calc(100% / 8 * @i);
-          animation: @animation .4s ease (@delay + .1s * @i) forwards;
+          animation: @animation 0.4s ease (@delay + 0.1s * @i) forwards;
         }
 
         .loop(@i+1);
@@ -331,7 +333,7 @@
     animation: fade-in 0.1s ease @delay forwards;
 
     .character {
-      background-image: url("../assets/character-purple.png");
+      background-image: var(--bg-purple);
     }
 
     .mask1,
@@ -344,13 +346,13 @@
 
     .mask1 {
       top: 0;
-      animation: top-slide-out .6s ease @delay forwards;
+      animation: top-slide-out 0.6s ease @delay forwards;
     }
 
     .mask2 {
       bottom: 0;
       transform: translateY(100%);
-      animation: bottom-slide-in .5s ease (@delay + .8s) forwards;
+      animation: bottom-slide-in 0.5s ease (@delay + 0.8s) forwards;
     }
   }
 
@@ -369,7 +371,8 @@
 
     .loop(@i) when(@i <=4) {
       span:nth-child(@{i}) {
-        animation: fade-in .1s linear (@delay + (@i - 1) * 0.05s) alternate 5 forwards;
+        animation: fade-in 0.1s linear (@delay + (@i - 1) * 0.05s) alternate 5
+          forwards;
       }
 
       .loop(@i+1);

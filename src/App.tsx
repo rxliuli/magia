@@ -1,4 +1,4 @@
-import { useReducer } from 'preact/hooks'
+import { useEffect, useReducer } from 'preact/hooks'
 import { ChapterOpen } from './views/ChapterOpen'
 import { Chapter1 } from './views/Chapter1'
 import { Chapter2 } from './views/Chapter2'
@@ -8,6 +8,17 @@ import { Music } from './views/Music'
 
 export function App() {
   const [state, onNext] = useReducer<number, void>((i) => i + 1, 0)
+  useEffect(() => {
+    if (location.pathname === '/mizuki') {
+      const list = ['pink', 'yellow', 'red', 'blue', 'purple']
+      list.forEach((name) =>
+        document.documentElement.style.setProperty(
+          `--bg-${name}`,
+          `url(/mizuki/character-${name}.jpg)`,
+        ),
+      )
+    }
+  }, [])
   return (
     <>
       {state === 0 && <ChapterOpen onNext={onNext} />}

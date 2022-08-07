@@ -122,16 +122,11 @@
     left: calc(50% - 160vmin / 2);
     top: calc(50% - 160vmin / 2);
 
-
-    @colors: var(--theme-purple),
-    var(--theme-yellow),
-    var(--theme-red),
-    var(--theme-blue),
-    var(--theme-pink),
-    var(--theme-purple);
+    @colors: var(--theme-purple), var(--theme-yellow), var(--theme-red),
+      var(--theme-blue), var(--theme-pink), var(--theme-purple);
 
     .frames(@i) when(@i < length(@colors)) {
-      @name: ~"border-@{i}";
+      @name: ~'border-@{i}';
 
       @keyframes @name {
         0% {
@@ -181,23 +176,23 @@
     }
 
     .color-yellow .avatar {
-      background-image: url("../assets/character-yellow.png");
+      background-image: var(--bg-yellow);
     }
 
     .color-red .avatar {
-      background-image: url("../assets/character-red.png");
+      background-image: var(--bg-red);
     }
 
     .color-blue .avatar {
-      background-image: url("../assets/character-blue.png");
+      background-image: var(--bg-blue);
     }
 
     .color-pink .avatar {
-      background-image: url("../assets/character-pink.png");
+      background-image: var(--bg-pink);
     }
 
     .color-purple .avatar {
-      background-image: url("../assets/character-purple.png");
+      background-image: var(--bg-purple);
     }
 
     @keyframes character-show {
@@ -235,10 +230,9 @@
         top: calc(50% - 20vmin / 2);
         width: 100%;
         height: 20vmin;
-        background: url("../assets/logo.svg") center no-repeat;
+        background: url('../assets/logo.svg') center no-repeat;
         background-size: 50%;
       }
-
 
       .avatar {
         position: absolute;
@@ -253,7 +247,8 @@
         background-position-y: 10%;
         background-size: 100%;
         box-shadow: 0 0 50px 30px #ffffff inset;
-        animation: character-show 2s ease forwards, character-hide 2s ease 5s forwards;
+        animation: character-show 2s ease forwards,
+          character-hide 2s ease 5s forwards;
       }
     }
   }
