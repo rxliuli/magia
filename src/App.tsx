@@ -9,8 +9,8 @@ import { Music } from './views/Music'
 export function App() {
   const [state, onNext] = useReducer<number, void>((i) => i + 1, 0)
   useEffect(() => {
-    if (location.pathname === '/mizuki') {
-      const list = ['pink', 'yellow', 'red', 'blue', 'purple']
+    const list = ['pink', 'yellow', 'red', 'blue', 'purple']
+    if (location.hash.includes('/mizuki')) {
       list.forEach((name) =>
         document.documentElement.style.setProperty(
           `--bg-${name}`,
